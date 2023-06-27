@@ -1,0 +1,21 @@
+﻿@using AptaEvents.Module.BusinessObjects;
+@if (Data is not null) 
+{
+    <DxTabs>
+        @foreach (var tab in Tabs)
+        {
+            <DxTab Text="@tab.Name">
+
+            </DxTab>
+        }
+    </DxTabs>
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<EventField> Data { get; set; }
+    [Parameter]
+    public IEnumerable<Tab> Tabs { get; set; }
+    [Parameter]
+    public EventCallback<EventField> ItemClick { get; set; }
+}

@@ -9,6 +9,8 @@ using DevExpress.ExpressApp.Model.Core;
 using DevExpress.ExpressApp.Model.DomainLogics;
 using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.Persistent.BaseImpl.EF;
+using DevExpress.ExpressApp.Utils;
+using AptaEvents.Blazor.Server.Components;
 
 namespace AptaEvents.Blazor.Server;
 
@@ -24,6 +26,8 @@ public sealed class AptaEventsBlazorModule : ModuleBase {
         e.Handled = true;
     }
     public AptaEventsBlazorModule() {
+        DataAccessModeHelper.RegisterEditorSupportedModes(typeof(BlazorCustomEventViewListEditor),
+                                 new[] { CollectionSourceDataAccessMode.Client });
     }
     public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
         return ModuleUpdater.EmptyModuleUpdaters;

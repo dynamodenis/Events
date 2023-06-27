@@ -1,6 +1,7 @@
 ﻿using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,6 +20,6 @@ namespace AptaEvents.Module.BusinessObjects
 
         [DisplayName("Fields")]
         [Column(TypeName = "jsonb")]
-        public virtual IList<EventField> EventFields { get; set; }
+        public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
     }
 }

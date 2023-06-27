@@ -40,11 +40,16 @@ public class AptaEventsDesignTimeDbContextFactory : IDesignTimeDbContextFactory<
 	}
 }
 [TypesInfoInitializer(typeof(AptaEventsContextInitializer))]
-public class AptaEventsEFCoreDbContext : DbContext {
-	public AptaEventsEFCoreDbContext(DbContextOptions<AptaEventsEFCoreDbContext> options) : base(options) {
-	}
-	//public DbSet<ModuleInfo> ModulesInfo { get; set; }
-	public DbSet<ModelDifference> ModelDifferences { get; set; }
+public class AptaEventsEFCoreDbContext : DbContext
+{
+    public AptaEventsEFCoreDbContext() : base()
+    {
+    }
+
+    public AptaEventsEFCoreDbContext(DbContextOptions<AptaEventsEFCoreDbContext> options) : base(options) {
+    }
+    //public DbSet<ModuleInfo> ModulesInfo { get; set; }
+    public DbSet<ModelDifference> ModelDifferences { get; set; }
 	public DbSet<ModelDifferenceAspect> ModelDifferenceAspects { get; set; }
 	public DbSet<PermissionPolicyRole> Roles { get; set; }
 	public DbSet<AptaEvents.Module.BusinessObjects.ApplicationUser> Users { get; set; }
