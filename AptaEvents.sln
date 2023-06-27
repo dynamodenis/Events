@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AptaEvents.Module", "AptaEvents.Module\AptaEvents.Module.csproj", "{7F38890D-A847-4C72-BB78-FB4843AFAA69}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AptaEvents.Blazor.Server", "AptaEvents.Blazor.Server\AptaEvents.Blazor.Server.csproj", "{B6D8DD13-5D61-4738-B987-A8F794A545E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		EasyTest|Any CPU = EasyTest|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F38890D-A847-4C72-BB78-FB4843AFAA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F38890D-A847-4C72-BB78-FB4843AFAA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F38890D-A847-4C72-BB78-FB4843AFAA69}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{7F38890D-A847-4C72-BB78-FB4843AFAA69}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{7F38890D-A847-4C72-BB78-FB4843AFAA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F38890D-A847-4C72-BB78-FB4843AFAA69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6D8DD13-5D61-4738-B987-A8F794A545E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6D8DD13-5D61-4738-B987-A8F794A545E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6D8DD13-5D61-4738-B987-A8F794A545E0}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{B6D8DD13-5D61-4738-B987-A8F794A545E0}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{B6D8DD13-5D61-4738-B987-A8F794A545E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6D8DD13-5D61-4738-B987-A8F794A545E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21B7F864-D381-491C-A876-C12B9E5EFECB}
+	EndGlobalSection
+EndGlobal

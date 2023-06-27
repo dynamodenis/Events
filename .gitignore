@@ -1,0 +1,8 @@
+.vs
+.git
+.config
+bin
+obj
+packages
+logs
+*.user
