@@ -1,0 +1,9 @@
+﻿<EventFieldsTabView Data=@ComponentModel.Value Tabs=@ComponentModel.Tabs ItemClick=@ComponentModel.OnItemClick />
+
+@code {
+    public static RenderFragment Create(EventFieldsModel componentModel) =>
+        @<EventFieldsRenderer ComponentModel=@componentModel />;
+
+    [Parameter]
+    public EventFieldsModel ComponentModel { get; set; }
+}

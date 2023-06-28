@@ -10,14 +10,14 @@ app {
 .header-logo {
     flex-shrink: 0;
     background-color: currentColor;
-    -webkit-mask: url('../images/Logo.svg');
-    mask: url('../images/Logo.svg');
+    -webkit-mask: url('../images/Logoleft.png');
+    mask: url('../images/Logoleft.png');
     -webkit-mask-position: center;
     mask-position: center;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
-    width: 180px;
-    height: 24px;
+    width: 150px;
+    height: 66px;
 }
 
 #blazor-error-ui {

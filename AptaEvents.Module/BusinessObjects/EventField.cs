@@ -14,6 +14,6 @@ namespace AptaEvents.Module.BusinessObjects
     {
         public virtual string Field { get; set; }
 
-        public virtual object Value { get; set; }
+        public virtual string Value { get; set; }
     }
 }

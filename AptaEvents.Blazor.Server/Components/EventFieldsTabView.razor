@@ -76,19 +76,19 @@
     async Task Grid_EditModelSaving(GridEditModelSavingEventArgs e)
     {
         var editModel = e.EditModel as EventFieldViewModel;
-        var current = Data.FirstOrDefault(f => f.Field == editModel.Name);
-
-        if (current != null)
-            current.Value = editModel.Value;
-        else
-            Data.Add(new EventField { Field = editModel.Name, Value = editModel.Value });
 
         var tab = Tabs.FirstOrDefault(t => t.Name == editModel.Tab);
         var currentEventField = tab.Fields.FirstOrDefault(f => f.Name == editModel.Name);
 
         currentEventField.Value = editModel.Value;
 
-        CollectionSource.Add(new EventField { Field = "test", Value = "value" });
+        var eventField = new EventField
+        {
+            Field = editModel.Name,
+            Value = editModel.Value
+        };
+
+        await ItemClick.InvokeAsync(eventField);
     }
 
 }

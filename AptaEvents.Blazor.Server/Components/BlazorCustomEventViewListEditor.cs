@@ -57,7 +57,7 @@ namespace AptaEvents.Blazor.Server.Components
             {
                 if (holder.ComponentModel.Data is IBindingList bindingList)
                     bindingList.ListChanged -= BindingList_ListChanged;
-
+                
                 if (dataSource is IBindingList newBindingList)
                     newBindingList.ListChanged += BindingList_ListChanged;
 
