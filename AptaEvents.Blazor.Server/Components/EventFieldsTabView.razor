@@ -67,20 +67,7 @@
 
     void Grid_CustomizeEditModel(GridCustomizeEditModelEventArgs e)
     {
-        /*var source = e.DataItem as EventFieldViewModelBase;
 
-        switch (source.Type)
-        {
-            case FieldType.Number:
-                e.EditModel = new EventFieldViewModelNumber(source);
-                break;
-            case FieldType.Date:
-                e.EditModel = new EventFieldViewModelDate(source);
-                break;
-            default:
-                e.EditModel = new EventFieldViewModelString(source);
-                break;
-        }*/
     }
 
     async Task Grid_EditModelSaving(GridEditModelSavingEventArgs e)
@@ -93,9 +80,10 @@
         else
             Data.Add(new EventField { Field = editModel.Name, Value = editModel.Value });
 
-        // edit
+        var tab = Tabs.FirstOrDefault(t => t.Name == editModel.Tab);
+        var currentEventField = tab.Fields.FirstOrDefault(f => f.Name == editModel.Name);
 
-        // update data source
+        currentEventField.Value = editModel.Value;
     }
 
 }

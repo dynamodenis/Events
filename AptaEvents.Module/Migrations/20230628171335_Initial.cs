@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using AptaEvents.Module.BusinessObjects;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -6,11 +8,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AptaEvents.Module.Migrations
 {
     /// <inheritdoc />
-    public partial class TabsFields : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Live = table.Column<bool>(type: "boolean", nullable: false),
+                    EventLink = table.Column<string>(type: "text", nullable: true),
+                    EventFields = table.Column<IList<EventField>>(type: "jsonb", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "ModelDifferences",
                 columns: table => new
@@ -203,6 +221,7 @@ namespace AptaEvents.Module.Migrations
                     ID = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: true),
                     Type = table.Column<int>(type: "integer", nullable: false),
+                    SortOrder = table.Column<int>(type: "integer", nullable: false),
                     TabID = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
@@ -313,6 +332,9 @@ namespace AptaEvents.Module.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Events");
+
             migrationBuilder.DropTable(
                 name: "Fields");
 

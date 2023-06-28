@@ -46,6 +46,8 @@ namespace AptaEvents.Blazor.Server.Components
         public FieldType Type { get; set; }
         public object Value { get; set; }
 
+        public string Tab { get; set; }
+
         public DateTime? DateValue { get => Value as DateTime?; set => Value = value; }
         public int NumberValue { get => int.TryParse(Value as string, out int i) ? i : 0; set => Value = value; }
         public string StringValue { get => (string)Value; set => Value = value; }

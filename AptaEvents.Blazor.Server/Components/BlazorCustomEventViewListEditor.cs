@@ -64,8 +64,7 @@ namespace AptaEvents.Blazor.Server.Components
                 var sourceList = collectionSource.GetEnumerable<EventField>().ToList();
                 holder.ComponentModel.Data = sourceList;
 
-                var objectSpace = application.CreateObjectSpace(typeof(Tab));
-                var tabs = objectSpace.GetObjects<Tab>();
+                var tabs = collectionSource.ObjectSpace.GetObjects<Tab>();
                 var tabEventFields = new List<TabWithEventFieldsViewModel>();
 
                 foreach (var tab in tabs)
@@ -81,7 +80,8 @@ namespace AptaEvents.Blazor.Server.Components
                         var eventViewModel = new EventFieldViewModel
                         {
                             Name = field.Name,
-                            Type = field.Type
+                            Type = field.Type,
+                            Tab = tab.Name
                         };
 
                         var existing = sourceList.FirstOrDefault(f => f.Field == field.Name);

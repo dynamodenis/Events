@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AptaEvents.Module.Migrations
 {
     [DbContext(typeof(AptaEventsEFCoreDbContext))]
-    [Migration("20230627230518_5")]
-    partial class _5
+    [Migration("20230628171335_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,25 +78,6 @@ namespace AptaEvents.Module.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("AptaEvents.Module.BusinessObjects.EventField", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("FieldID")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("text");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("FieldID");
-
-                    b.ToTable("EventFields");
                 });
 
             modelBuilder.Entity("AptaEvents.Module.BusinessObjects.Field", b =>
@@ -423,15 +404,6 @@ namespace AptaEvents.Module.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("AptaEvents.Module.BusinessObjects.EventField", b =>
-                {
-                    b.HasOne("AptaEvents.Module.BusinessObjects.Field", "Field")
-                        .WithMany()
-                        .HasForeignKey("FieldID");
-
-                    b.Navigation("Field");
                 });
 
             modelBuilder.Entity("AptaEvents.Module.BusinessObjects.Field", b =>
