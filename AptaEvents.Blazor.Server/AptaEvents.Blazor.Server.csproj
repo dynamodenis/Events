@@ -27,4 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AptaEvents.Module\AptaEvents.Module.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
 </Project>

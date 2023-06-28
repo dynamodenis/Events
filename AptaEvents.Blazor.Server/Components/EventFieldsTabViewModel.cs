@@ -1,4 +1,5 @@
 ﻿using AptaEvents.Module.BusinessObjects;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Blazor.Components.Models;
 
 namespace AptaEvents.Blazor.Server.Components
@@ -14,6 +15,12 @@ namespace AptaEvents.Blazor.Server.Components
         public IEnumerable<TabWithEventFieldsViewModel> Tabs
         {
             get => GetPropertyValue<IEnumerable<TabWithEventFieldsViewModel>>();
+            set => SetPropertyValue(value);
+        }
+
+        public CollectionSourceBase CollectionSource
+        {
+            get => GetPropertyValue<CollectionSourceBase>();
             set => SetPropertyValue(value);
         }
 

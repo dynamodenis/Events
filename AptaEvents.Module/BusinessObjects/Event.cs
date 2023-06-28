@@ -12,6 +12,7 @@ namespace AptaEvents.Module.BusinessObjects
     {
         public virtual string Name { get; set; }
 
+        [Column(TypeName = "date")]
         public virtual DateTime Date { get; set; }
 
         public virtual bool Live { get; set; }

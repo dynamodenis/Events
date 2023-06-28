@@ -61,6 +61,8 @@ namespace AptaEvents.Blazor.Server.Components
                 if (dataSource is IBindingList newBindingList)
                     newBindingList.ListChanged += BindingList_ListChanged;
 
+                holder.ComponentModel.CollectionSource = collectionSource;
+
                 var sourceList = collectionSource.GetEnumerable<EventField>().ToList();
                 holder.ComponentModel.Data = sourceList;
 
