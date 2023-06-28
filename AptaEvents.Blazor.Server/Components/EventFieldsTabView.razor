@@ -4,18 +4,98 @@
     <DxTabs>
         @foreach (var tab in Tabs)
         {
-            <DxTab Text="@tab.Name">
+            <DxTabPage Text="@tab.Name">
+                <DxGrid @ref="Grids[tab.Name]"
+                        Data="tab.Fields"
+                        PageSize="30"
+                        KeyFieldName="Name"
+                        ValidationEnabled="false"
+                        CustomizeEditModel="Grid_CustomizeEditModel"
+                        EditModelSaving="Grid_EditModelSaving"
+                        EditMode="GridEditMode.EditRow"
+                        EditorRenderMode="GridEditorRenderMode.Integrated"
+                        KeyboardNavigationEnabled=true>
+                    <Columns>
+                        <DxGridCommandColumn Width="160px" />
+                        <DxGridDataColumn FieldName="Name" MinWidth="80" ReadOnly=true />
+                        <DxGridDataColumn FieldName="Value" MinWidth="120">
+                            <CellEditTemplate>
+                                @{
+                                    var field = (EventFieldViewModel)context.EditModel;
 
-            </DxTab>
+                                    if (field.Type == FieldType.Date)
+                                    {
+                                        <DxDateEdit @bind-Date="@field.DateValue"></DxDateEdit>
+                                    }
+                                    else if (field.Type == FieldType.Number)
+                                    {
+                                        <DxSpinEdit @bind-Value="@field.NumberValue"></DxSpinEdit>
+                                    }
+                                    else
+                                    {
+                                        <DxTextBox @bind-Text="@field.StringValue"></DxTextBox>
+                                    }
+                                }
+                            </CellEditTemplate>
+
+                        </DxGridDataColumn>
+                    </Columns>
+                </DxGrid>
+            </DxTabPage>
         }
     </DxTabs>
 }
 
 @code {
     [Parameter]
-    public IEnumerable<EventField> Data { get; set; }
+    public IList<EventField> Data { get; set; }
     [Parameter]
-    public IEnumerable<Tab> Tabs { get; set; }
+    public IEnumerable<TabWithEventFieldsViewModel> Tabs { get; set; }
     [Parameter]
     public EventCallback<EventField> ItemClick { get; set; }
+
+    Dictionary<string, IGrid> Grids { get; set; } = new Dictionary<string, IGrid>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            foreach (var Grid in Grids.Values)
+                await Grid.StartEditRowAsync(0);
+        }
+    }
+
+    void Grid_CustomizeEditModel(GridCustomizeEditModelEventArgs e)
+    {
+        /*var source = e.DataItem as EventFieldViewModelBase;
+
+        switch (source.Type)
+        {
+            case FieldType.Number:
+                e.EditModel = new EventFieldViewModelNumber(source);
+                break;
+            case FieldType.Date:
+                e.EditModel = new EventFieldViewModelDate(source);
+                break;
+            default:
+                e.EditModel = new EventFieldViewModelString(source);
+                break;
+        }*/
+    }
+
+    async Task Grid_EditModelSaving(GridEditModelSavingEventArgs e)
+    {
+        var editModel = e.EditModel as EventFieldViewModel;
+        var current = Data.FirstOrDefault(f => f.Field == editModel.Name);
+
+        if (current != null)
+            current.Value = editModel.Value;
+        else
+            Data.Add(new EventField { Field = editModel.Name, Value = editModel.Value });
+
+        // edit
+
+        // update data source
+    }
+
 }

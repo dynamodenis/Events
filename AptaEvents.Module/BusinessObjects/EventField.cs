@@ -12,8 +12,8 @@ namespace AptaEvents.Module.BusinessObjects
     [Browsable(false)]
     public class EventField : BaseObject
     {
-        public virtual Field Field { get; set; }
+        public virtual string Field { get; set; }
 
-        public virtual string Value { get; set; }
+        public virtual object Value { get; set; }
     }
 }

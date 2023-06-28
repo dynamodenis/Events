@@ -61,21 +61,48 @@ namespace AptaEvents.Blazor.Server.Components
                 if (dataSource is IBindingList newBindingList)
                     newBindingList.ListChanged += BindingList_ListChanged;
 
-                holder.ComponentModel.Data =
-                    (dataSource as IEnumerable)?.OfType<EventField>();
+                var sourceList = collectionSource.GetEnumerable<EventField>().ToList();
+                holder.ComponentModel.Data = sourceList;
 
                 var objectSpace = application.CreateObjectSpace(typeof(Tab));
+                var tabs = objectSpace.GetObjects<Tab>();
+                var tabEventFields = new List<TabWithEventFieldsViewModel>();
 
-                holder.ComponentModel.Tabs = objectSpace.GetObjects<Tab>();
+                foreach (var tab in tabs)
+                {
+                    var tabViewModel = new TabWithEventFieldsViewModel
+                    {
+                        Name = tab.Name,
+                        Fields = new List<EventFieldViewModel>()
+                    };
+
+                    foreach (var field in tab.Fields)
+                    {
+                        var eventViewModel = new EventFieldViewModel
+                        {
+                            Name = field.Name,
+                            Type = field.Type
+                        };
+
+                        var existing = sourceList.FirstOrDefault(f => f.Field == field.Name);
+
+                        eventViewModel.Value = existing?.Value;
+
+                        tabViewModel.Fields.Add(eventViewModel);
+                    }
+
+                    tabEventFields.Add(tabViewModel);
+                }
+
+                holder.ComponentModel.Tabs = tabEventFields;
             }
         }
 
         protected override void OnControlsCreated()
         {
             if (Control is EventFieldsViewListViewHolder holder)
-            {
                 holder.ComponentModel.ItemClick += ComponentModel_ItemClick;
-            }
+
             base.OnControlsCreated();
         }
 
