@@ -13,7 +13,7 @@ namespace AptaEvents.Blazor.Server;
 
 public class AptaEventsBlazorApplication : BlazorApplication {
     public AptaEventsBlazorApplication() {
-        ApplicationName = "AptaEvents";
+        ApplicationName = "APTA Event Manager";
         CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
         DatabaseVersionMismatch += AptaEventsBlazorApplication_DatabaseVersionMismatch;
     }

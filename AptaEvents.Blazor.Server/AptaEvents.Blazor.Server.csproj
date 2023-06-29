@@ -9,6 +9,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="wwwroot\images\APTA-logo-200x79.PNG" />
     <Content Remove="wwwroot\images\logoleft.png" />
   </ItemGroup>
   <ItemGroup>
@@ -20,6 +21,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="wwwroot\images\APTA-logo-200x79.PNG" />
     <EmbeddedResource Include="wwwroot\images\logoleft.png" />
   </ItemGroup>
   <ItemGroup>

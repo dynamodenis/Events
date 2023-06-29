@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 namespace AptaEvents.Module.BusinessObjects
 {
     // class to keep the special fields for an event
-    [Browsable(false)]
-    public class EventField : BaseObject
+    public class EventField
     {
         public virtual string Field { get; set; }
 

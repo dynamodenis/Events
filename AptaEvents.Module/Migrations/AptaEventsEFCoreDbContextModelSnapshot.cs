@@ -48,7 +48,7 @@ namespace AptaEvents.Module.Migrations
                     b.HasIndex("LoginProviderName", "ProviderUserKey")
                         .IsUnique();
 
-                    b.ToTable("PermissionPolicyUserLoginInfo");
+                    b.ToTable("PermissionPolicyUserLoginInfo", (string)null);
                 });
 
             modelBuilder.Entity("AptaEvents.Module.BusinessObjects.Event", b =>
@@ -74,7 +74,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
                 });
 
             modelBuilder.Entity("AptaEvents.Module.BusinessObjects.Field", b =>
@@ -99,7 +99,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasIndex("TabID");
 
-                    b.ToTable("Fields");
+                    b.ToTable("Fields", (string)null);
                 });
 
             modelBuilder.Entity("AptaEvents.Module.BusinessObjects.Tab", b =>
@@ -116,7 +116,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Tabs");
+                    b.ToTable("Tabs", (string)null);
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.ModelDifference", b =>
@@ -136,7 +136,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("ModelDifferences");
+                    b.ToTable("ModelDifferences", (string)null);
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.ModelDifferenceAspect", b =>
@@ -158,7 +158,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasIndex("OwnerID");
 
-                    b.ToTable("ModelDifferenceAspects");
+                    b.ToTable("ModelDifferenceAspects", (string)null);
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyActionPermissionObject", b =>
@@ -177,7 +177,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasIndex("RoleID");
 
-                    b.ToTable("PermissionPolicyActionPermissionObject");
+                    b.ToTable("PermissionPolicyActionPermissionObject", (string)null);
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyMemberPermissionsObject", b =>
@@ -205,7 +205,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasIndex("TypePermissionObjectID");
 
-                    b.ToTable("PermissionPolicyMemberPermissionsObject");
+                    b.ToTable("PermissionPolicyMemberPermissionsObject", (string)null);
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyNavigationPermissionObject", b =>
@@ -230,7 +230,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasIndex("RoleID");
 
-                    b.ToTable("PermissionPolicyNavigationPermissionObject");
+                    b.ToTable("PermissionPolicyNavigationPermissionObject", (string)null);
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyObjectPermissionsObject", b =>
@@ -261,7 +261,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasIndex("TypePermissionObjectID");
 
-                    b.ToTable("PermissionPolicyObjectPermissionsObject");
+                    b.ToTable("PermissionPolicyObjectPermissionsObject", (string)null);
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyRoleBase", b =>
@@ -291,7 +291,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("PermissionPolicyRoleBase");
+                    b.ToTable("PermissionPolicyRoleBase", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("PermissionPolicyRoleBase");
 
@@ -329,7 +329,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasIndex("RoleID");
 
-                    b.ToTable("PermissionPolicyTypePermissionObject");
+                    b.ToTable("PermissionPolicyTypePermissionObject", (string)null);
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyUser", b =>
@@ -356,7 +356,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("PermissionPolicyUser");
+                    b.ToTable("PermissionPolicyUser", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("PermissionPolicyUser");
 
@@ -375,7 +375,7 @@ namespace AptaEvents.Module.Migrations
 
                     b.HasIndex("UsersID");
 
-                    b.ToTable("PermissionPolicyRolePermissionPolicyUser");
+                    b.ToTable("PermissionPolicyRolePermissionPolicyUser", (string)null);
                 });
 
             modelBuilder.Entity("DevExpress.Persistent.BaseImpl.EF.PermissionPolicy.PermissionPolicyRole", b =>
