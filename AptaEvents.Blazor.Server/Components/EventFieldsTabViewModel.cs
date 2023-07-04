@@ -18,6 +18,12 @@ namespace AptaEvents.Blazor.Server.Components
             set => SetPropertyValue(value);
         }
 
+        public Event Event
+        {
+            get => GetPropertyValue<Event>();
+            set => SetPropertyValue(value);
+        }
+
         public CollectionSourceBase CollectionSource
         {
             get => GetPropertyValue<CollectionSourceBase>();
@@ -25,19 +31,19 @@ namespace AptaEvents.Blazor.Server.Components
         }
 
         public void Refresh() => RaiseChanged();
-        public void OnItemClick(EventField item) =>
+        public void OnItemClick(SimpleEventFieldViewModel item) =>
             ItemClick?.Invoke(this, new EventFieldTabViewModelItemClickEventArgs(item));
         public event EventHandler<EventFieldTabViewModelItemClickEventArgs> ItemClick;
     }
 
     public class EventFieldTabViewModelItemClickEventArgs : EventArgs
     {
-        public EventFieldTabViewModelItemClickEventArgs(EventField item)
+        public EventFieldTabViewModelItemClickEventArgs(SimpleEventFieldViewModel item)
         {
             Item = item;
         }
 
-        public EventField Item { get; }
+        public SimpleEventFieldViewModel Item { get; }
     }
 
     public class TabWithEventFieldsViewModel
@@ -58,5 +64,11 @@ namespace AptaEvents.Blazor.Server.Components
         public DateTime? DateValue { get => DateTime.TryParse(Value, out var d) ? d : DateTime.Now; set => Value = value.ToString(); }
         public int NumberValue { get => int.TryParse(Value , out var i) ? i : 0; set => Value = value.ToString(); }
         public string StringValue { get => Value; set => Value = value; }
+    }
+
+    public class SimpleEventFieldViewModel
+    {
+        public string Field { get; set; }
+        public string Value { get; set; }
     }
 }

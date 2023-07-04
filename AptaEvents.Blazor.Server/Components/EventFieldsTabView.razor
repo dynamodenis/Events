@@ -53,7 +53,7 @@
     [Parameter]
     public IEnumerable<TabWithEventFieldsViewModel> Tabs { get; set; }
     [Parameter]
-    public EventCallback<EventField> ItemClick { get; set; }
+    public EventCallback<SimpleEventFieldViewModel> ItemClick { get; set; }
     [Parameter]
     public CollectionSourceBase CollectionSource { get; set; }
 
@@ -82,7 +82,7 @@
 
         currentEventField.Value = editModel.Value;
 
-        var eventField = new EventField
+        var eventField = new SimpleEventFieldViewModel
         {
             Field = editModel.Name,
             Value = editModel.Value

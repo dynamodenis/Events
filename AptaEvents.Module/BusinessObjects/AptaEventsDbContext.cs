@@ -58,6 +58,7 @@ public class AptaEventsEFCoreDbContext : DbContext
     public DbSet<Tab> Tabs { get; set; }
     public DbSet<Field> Fields { get; set; }
     public DbSet<Event> Events { get; set; }
+    public DbSet<EventField> EventFields { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);

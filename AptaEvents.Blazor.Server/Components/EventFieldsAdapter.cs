@@ -14,10 +14,12 @@ namespace AptaEvents.Blazor.Server.Components
     public class EventFieldsAdapter : ComponentAdapterBase
     {
         private IObjectSpace objectSpace;
+        private Module.BusinessObjects.Event _event;
 
-        public EventFieldsAdapter(EventFieldsModel componentModel, IObjectSpace objectSpace)
+        public EventFieldsAdapter(EventFieldsModel componentModel, IObjectSpace objectSpace, Module.BusinessObjects.Event eventObject)
         {
             this.objectSpace = objectSpace;
+            this._event = eventObject;
 
             ComponentModel = componentModel ?? throw new ArgumentNullException(nameof(componentModel));
             ComponentModel.ValueChanged += ComponentModel_ValueChanged;
@@ -32,7 +34,15 @@ namespace AptaEvents.Blazor.Server.Components
             if (current != null)
                 current.Value = editedField.Value;
             else
-                ComponentModel.Value.Add(editedField);
+            {
+                var eventField = objectSpace.CreateObject<EventField>();
+
+                eventField.Field = editedField.Field;
+                eventField.Value = editedField.Value;
+                eventField.Event = _event;
+
+                ComponentModel.Value.Add(eventField);
+            }
 
             RaiseValueChanged();
         }

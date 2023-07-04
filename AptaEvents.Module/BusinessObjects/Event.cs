@@ -20,7 +20,6 @@ namespace AptaEvents.Module.BusinessObjects
         public virtual string EventLink { get; set; }
 
         [DisplayName("Fields")]
-        [Column(TypeName = "jsonb")]
         public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
     }
 }

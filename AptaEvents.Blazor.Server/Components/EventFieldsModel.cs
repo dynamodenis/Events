@@ -23,7 +23,7 @@ namespace AptaEvents.Blazor.Server.Components
             ValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public void OnItemClick(EventField item) =>
+        public void OnItemClick(SimpleEventFieldViewModel item) =>
             ItemClick?.Invoke(this, new EventFieldTabViewModelItemClickEventArgs(item));
         public event EventHandler<EventFieldTabViewModelItemClickEventArgs> ItemClick;
         public event EventHandler ValueChanged;

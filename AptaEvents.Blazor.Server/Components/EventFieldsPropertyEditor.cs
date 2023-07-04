@@ -21,6 +21,6 @@ namespace AptaEvents.Blazor.Server.Components
             this.application = application;
         }
 
-        protected override IComponentAdapter CreateComponentAdapter() => new EventFieldsAdapter(new EventFieldsModel(), objectSpace);
+        protected override IComponentAdapter CreateComponentAdapter() => new EventFieldsAdapter(new EventFieldsModel(), objectSpace, View.CurrentObject as Event);
     }
 }

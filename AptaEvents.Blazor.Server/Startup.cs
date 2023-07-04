@@ -89,7 +89,7 @@ public class Startup {
         //https://developers.google.com/identity/protocols/oauth2
         //https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
         //https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow
-        authentication.AddMicrosoftIdentityWebApp(Configuration, configSectionName: "Authentication:AzureAd", cookieScheme: null);
+        //authentication.AddMicrosoftIdentityWebApp(Configuration, configSectionName: "Authentication:AzureAd", cookieScheme: null);
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

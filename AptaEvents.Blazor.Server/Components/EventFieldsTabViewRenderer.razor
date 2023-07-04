@@ -1,4 +1,9 @@
-﻿<EventFieldsTabView Data=@ComponentModel.Data Tabs=@ComponentModel.Tabs ItemClick=@ComponentModel.OnItemClick CollectionSource=@ComponentModel.CollectionSource />
+﻿<EventFieldsTabView 
+    Data=@ComponentModel.Data 
+    Tabs=@ComponentModel.Tabs 
+    ItemClick=@ComponentModel.OnItemClick 
+    CollectionSource=@ComponentModel.CollectionSource
+    Event=@ComponentModel.Event />
 
 @code {
     public static RenderFragment Create(EventFieldsTabViewModel componentModel) =>

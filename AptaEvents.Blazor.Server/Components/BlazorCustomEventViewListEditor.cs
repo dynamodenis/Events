@@ -14,7 +14,7 @@ namespace AptaEvents.Blazor.Server.Components
     [ListEditor(typeof(EventField))]
     public class BlazorCustomEventViewListEditor : ListEditor, IComplexListEditor
     {
-        private EventField[] selectedObjects = Array.Empty<EventField>();
+        private SimpleEventFieldViewModel[] selectedObjects = Array.Empty<SimpleEventFieldViewModel>();
 
         private CollectionSourceBase collectionSource;
         private XafApplication application;
@@ -66,7 +66,7 @@ namespace AptaEvents.Blazor.Server.Components
                 var sourceList = collectionSource.GetEnumerable<EventField>().ToList();
                 holder.ComponentModel.Data = sourceList;
 
-                var tabs = collectionSource.ObjectSpace.GetObjects<Tab>();
+                var tabs = collectionSource.ObjectSpace.GetObjects<Tab>().OrderBy(o => o.SortOrder);
                 var tabEventFields = new List<TabWithEventFieldsViewModel>();
 
                 foreach (var tab in tabs)
@@ -77,7 +77,7 @@ namespace AptaEvents.Blazor.Server.Components
                         Fields = new List<EventFieldViewModel>()
                     };
 
-                    foreach (var field in tab.Fields)
+                    foreach (var field in tab.Fields.OrderBy(o => o.SortOrder))
                     {
                         var eventViewModel = new EventFieldViewModel
                         {
@@ -116,7 +116,7 @@ namespace AptaEvents.Blazor.Server.Components
         private void ComponentModel_ItemClick(object sender,
                                             EventFieldTabViewModelItemClickEventArgs e)
         {
-            selectedObjects = new EventField[] { e.Item };
+            selectedObjects = new SimpleEventFieldViewModel[] { e.Item };
 
             OnSelectionChanged();
             OnProcessSelectedItem();
