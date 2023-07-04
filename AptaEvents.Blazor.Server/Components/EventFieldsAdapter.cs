@@ -62,7 +62,7 @@ namespace AptaEvents.Blazor.Server.Components
         {
             ComponentModel.Value = (IList<EventField>)value;
 
-            var tabs = objectSpace.GetObjects<Tab>();
+            var tabs = objectSpace.GetObjects<Tab>().OrderBy(o => o.SortOrder);
             var tabEventFields = new List<TabWithEventFieldsViewModel>();
 
             foreach (var tab in tabs)
@@ -73,7 +73,7 @@ namespace AptaEvents.Blazor.Server.Components
                     Fields = new List<EventFieldViewModel>()
                 };
 
-                foreach (var field in tab.Fields)
+                foreach (var field in tab.Fields.OrderBy(o => o.SortOrder))
                 {
                     var eventViewModel = new EventFieldViewModel
                     {

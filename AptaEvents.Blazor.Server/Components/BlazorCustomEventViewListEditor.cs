@@ -53,51 +53,6 @@ namespace AptaEvents.Blazor.Server.Components
 
         protected override void AssignDataSourceToControl(object dataSource)
         {
-            if (Control is EventFieldsViewListViewHolder holder)
-            {
-                if (holder.ComponentModel.Data is IBindingList bindingList)
-                    bindingList.ListChanged -= BindingList_ListChanged;
-                
-                if (dataSource is IBindingList newBindingList)
-                    newBindingList.ListChanged += BindingList_ListChanged;
-
-                holder.ComponentModel.CollectionSource = collectionSource;
-
-                var sourceList = collectionSource.GetEnumerable<EventField>().ToList();
-                holder.ComponentModel.Data = sourceList;
-
-                var tabs = collectionSource.ObjectSpace.GetObjects<Tab>().OrderBy(o => o.SortOrder);
-                var tabEventFields = new List<TabWithEventFieldsViewModel>();
-
-                foreach (var tab in tabs)
-                {
-                    var tabViewModel = new TabWithEventFieldsViewModel
-                    {
-                        Name = tab.Name,
-                        Fields = new List<EventFieldViewModel>()
-                    };
-
-                    foreach (var field in tab.Fields.OrderBy(o => o.SortOrder))
-                    {
-                        var eventViewModel = new EventFieldViewModel
-                        {
-                            Name = field.Name,
-                            Type = field.Type,
-                            Tab = tab.Name
-                        };
-
-                        var existing = sourceList.FirstOrDefault(f => f.Field == field.Name);
-
-                        eventViewModel.Value = existing?.Value;
-
-                        tabViewModel.Fields.Add(eventViewModel);
-                    }
-
-                    tabEventFields.Add(tabViewModel);
-                }
-
-                holder.ComponentModel.Tabs = tabEventFields;
-            }
         }
 
         protected override void OnControlsCreated()
