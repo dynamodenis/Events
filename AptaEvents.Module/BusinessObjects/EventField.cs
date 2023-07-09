@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AptaEvents.Module.BusinessObjects
@@ -17,6 +18,7 @@ namespace AptaEvents.Module.BusinessObjects
 
         public virtual string Value { get; set; }
 
+        [JsonIgnore]
         public virtual Event Event { get; set; }
     }
 }
