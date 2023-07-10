@@ -10,6 +10,21 @@ namespace AptaEvents.Module.BusinessObjects
     [NavigationItem("Events")]
     public class Event : BaseObject
     {
+        [VisibleInListView(false)]
+        [VisibleInDetailView(false)]
+        [VisibleInLookupListView(false)]
+        public virtual int? EventId { get; set; }
+
+        [VisibleInListView(false)]
+        [VisibleInDetailView(false)]
+        [VisibleInLookupListView(false)]
+        public virtual int? TournamentId { get; set; }
+
+        [VisibleInListView(false)]
+        [VisibleInDetailView(false)]
+        [VisibleInLookupListView(false)]
+        public virtual int? SeasonId { get; set; }
+
         public virtual string Name { get; set; }
 
         [Column(TypeName = "date")]
