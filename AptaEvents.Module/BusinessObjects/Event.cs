@@ -22,4 +22,11 @@ namespace AptaEvents.Module.BusinessObjects
         [DisplayName("Fields")]
         public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
     }
+
+    public class ApiEventList
+    {
+        public int eventID { get; set; } = 0;
+        public string eventName { get; set; } = string.Empty;
+    }
+
 }
