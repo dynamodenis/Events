@@ -13,6 +13,11 @@ using DevExpress.ExpressApp;
 using System.Security.Principal;
 using System.Security.Claims;
 using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using IdentityModel.Client;
+using IdentityModel;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 
 namespace AptaEvents.Blazor.Server;
 
@@ -83,7 +88,21 @@ public class Startup {
         authentication
             .AddCookie(options => {
                 options.LoginPath = "/LoginPage";
-            });
+            })
+            .AddOpenIdConnect(options =>
+             {
+                 var authority = Configuration.GetSection("Authentication:OpenIdConnect:Authority").Value;
+
+                 options.ClientId = Configuration.GetSection("Authentication:OpenIdConnect:ClientId").Value;
+                 options.ClientSecret = Configuration.GetSection("Authentication:OpenIdConnect:ClientSecret").Value;
+                 options.Authority = authority;
+                 options.CallbackPath = Configuration.GetSection("Authentication:OpenIdConnect:CallbackPath").Value;
+                 options.Scope.Add("AptaEvents");
+                 options.ResponseType = "code";
+                 options.SaveTokens = true;
+                 options.GetClaimsFromUserInfoEndpoint = true;
+                 options.ClaimActions.Add(new JsonKeyClaimAction(JwtClaimTypes.Role, null, JwtClaimTypes.Role));
+             });
         //Configure OAuth2 Identity Providers based on your requirements. For more information, see
         //https://docs.devexpress.com/eXpressAppFramework/402197/task-based-help/security/how-to-use-active-directory-and-oauth2-authentication-providers-in-blazor-applications
         //https://developers.google.com/identity/protocols/oauth2
@@ -115,5 +134,6 @@ public class Startup {
             endpoints.MapFallbackToPage("/_Host");
             endpoints.MapControllers();
         });
+        
     }
 }
