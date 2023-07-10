@@ -28,6 +28,7 @@ namespace AptaEvents.Module.BusinessObjects
         String, 
         Number, 
         Date, 
-        Memo 
+        Memo,
+        Boolean
     }
 }
