@@ -5,6 +5,7 @@ using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Security;
 using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 using AptaEvents.Module.BusinessObjects;
+using IdentityModel;
 
 namespace AptaEvents.Blazor.Server.Services {
 
@@ -30,10 +31,10 @@ namespace AptaEvents.Blazor.Server.Services {
             var providerUserKey = userIdClaim.Value;
             var loginProviderName = claimsPrincipal.Identity.AuthenticationType;
             //var userName = claimsPrincipal.Identity.Name;
-            Claim userName = claimsPrincipal.FindFirst(ClaimTypes.GivenName);
+            Claim userName = claimsPrincipal.FindFirst(JwtClaimTypes.Name);
 
-            // Find the first claim with the claim type "role" and value starting with "APTAEvents"
-            Claim userRole = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role && c.Value.StartsWith("APTAEvents"));
+            // Find the first claim with the claim type "role" and value starting with "AptaEvents"
+            Claim userRole = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == JwtClaimTypes.Role && c.Value.ToLower() == "aptaevents");
 
             if (userRole != null)
             {
