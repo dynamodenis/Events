@@ -1364,8 +1364,8 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    No suitable constructor was found for entity type 'PositionPropertyWrapper'. The following constructors had parameters that could not be bound to properties of the entity type: 
-    Cannot bind 'positionName', 'key' in 'PositionPropertyWrapper(string positionName, int key)'
+	Message:    No suitable constructor was found for entity type 'EventLinkPropertyWrapper'. The following constructors had parameters that could not be bound to properties of the entity type: 
+    Cannot bind 'positionName', 'key' in 'EventLinkPropertyWrapper(string positionName, int key)'
 Note that only mapped properties can be bound to constructor parameters. Navigations to related entities, including references to owned types, cannot be bound.
 	Data:       0 entries
 	Stack trace:
@@ -1730,8 +1730,8 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    No suitable constructor was found for entity type 'PositionPropertyWrapper'. The following constructors had parameters that could not be bound to properties of the entity type: 
-    Cannot bind 'positionName', 'key' in 'PositionPropertyWrapper(string positionName, int key)'
+	Message:    No suitable constructor was found for entity type 'EventLinkPropertyWrapper'. The following constructors had parameters that could not be bound to properties of the entity type: 
+    Cannot bind 'positionName', 'key' in 'EventLinkPropertyWrapper(string positionName, int key)'
 Note that only mapped properties can be bound to constructor parameters. Navigations to related entities, including references to owned types, cannot be bound.
 	Data:       0 entries
 	Stack trace:
@@ -3555,7 +3555,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    Property 'PositionPropertyWrapper.Key' is not virtual. 'UseChangeTrackingProxies' requires all entity types to be public, unsealed, have virtual properties, and have a public or protected constructor. 'UseLazyLoadingProxies' requires only the navigation properties be virtual.
+	Message:    Property 'EventLinkPropertyWrapper.Key' is not virtual. 'UseChangeTrackingProxies' requires all entity types to be public, unsealed, have virtual properties, and have a public or protected constructor. 'UseLazyLoadingProxies' requires only the navigation properties be virtual.
 	Data:       0 entries
 	Stack trace:
 
@@ -3921,7 +3921,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    Property 'PositionPropertyWrapper.Key' is not virtual. 'UseChangeTrackingProxies' requires all entity types to be public, unsealed, have virtual properties, and have a public or protected constructor. 'UseLazyLoadingProxies' requires only the navigation properties be virtual.
+	Message:    Property 'EventLinkPropertyWrapper.Key' is not virtual. 'UseChangeTrackingProxies' requires all entity types to be public, unsealed, have virtual properties, and have a public or protected constructor. 'UseLazyLoadingProxies' requires only the navigation properties be virtual.
 	Data:       0 entries
 	Stack trace:
 
@@ -4287,7 +4287,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    The entity type 'PositionPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+	Message:    The entity type 'EventLinkPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
 	Data:       0 entries
 	Stack trace:
 
@@ -4654,7 +4654,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    The entity type 'PositionPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+	Message:    The entity type 'EventLinkPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
 	Data:       0 entries
 	Stack trace:
 
@@ -5021,7 +5021,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    The entity type 'PositionPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+	Message:    The entity type 'EventLinkPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
 	Data:       0 entries
 	Stack trace:
 
@@ -5388,7 +5388,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    The entity type 'PositionPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+	Message:    The entity type 'EventLinkPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
 	Data:       0 entries
 	Stack trace:
 
@@ -5756,7 +5756,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    The entity type 'PositionPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+	Message:    The entity type 'EventLinkPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
 	Data:       0 entries
 	Stack trace:
 
@@ -6124,7 +6124,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    The entity type 'PositionPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+	Message:    The entity type 'EventLinkPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
 	Data:       0 entries
 	Stack trace:
 
@@ -6493,7 +6493,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    The entity type 'PositionPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+	Message:    The entity type 'EventLinkPropertyWrapper' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'. For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
 	Data:       0 entries
 	Stack trace:
 
@@ -6862,7 +6862,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    Unable to determine the relationship represented by navigation 'Event.PositionDataSource' of type 'BindingList<PositionPropertyWrapper>'. Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
+	Message:    Unable to determine the relationship represented by navigation 'Event.PositionDataSource' of type 'BindingList<EventLinkPropertyWrapper>'. Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
 	Data:       0 entries
 	Stack trace:
 
@@ -7232,7 +7232,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    Unable to determine the relationship represented by navigation 'Event.PositionDataSource' of type 'BindingList<PositionPropertyWrapper>'. Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
+	Message:    Unable to determine the relationship represented by navigation 'Event.PositionDataSource' of type 'BindingList<EventLinkPropertyWrapper>'. Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
 	Data:       0 entries
 	Stack trace:
 
@@ -7602,7 +7602,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    Unable to determine the relationship represented by navigation 'Event.PositionWrapper' of type 'PositionPropertyWrapper'. Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
+	Message:    Unable to determine the relationship represented by navigation 'Event.PositionWrapper' of type 'EventLinkPropertyWrapper'. Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
 	Data:       0 entries
 	Stack trace:
 
@@ -7973,7 +7973,7 @@ Loaded assemblies
 The error occurred:
 
 	Type:       InvalidOperationException
-	Message:    Unable to determine the relationship represented by navigation 'Event.PositionWrapper' of type 'PositionPropertyWrapper'. Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
+	Message:    Unable to determine the relationship represented by navigation 'Event.PositionWrapper' of type 'EventLinkPropertyWrapper'. Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
 	Data:       0 entries
 	Stack trace:
 

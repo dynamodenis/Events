@@ -23,23 +23,23 @@ namespace AptaEvents.Module.BusinessObjects
         [Browsable(false)]
         public virtual string EventLink { get; set; }
 
-        private PositionPropertyWrapper _positionPropertyWrapper;
+        private EventLinkPropertyWrapper _EventLinkPropertyWrapper;
         [XafDisplayName("EventLink")]
-        [DataSourceProperty(nameof(PositionDataSource))]
+        [DataSourceProperty(nameof(EventLinkDataSource))]
         [NotMapped]
-        public PositionPropertyWrapper PositionWrapper
+        public EventLinkPropertyWrapper EventLinkWrapper
         {
             get
             {
-                if (_positionPropertyWrapper == null || _positionPropertyWrapper.Key != EventLink)
+                if (_EventLinkPropertyWrapper == null || _EventLinkPropertyWrapper.Key != EventLink)
                 {
-                    _positionPropertyWrapper = PositionDataSource.FirstOrDefault(i => i.Key == EventLink);
+                    _EventLinkPropertyWrapper = EventLinkDataSource.FirstOrDefault(i => i.Key == EventLink);
                 }
-                return _positionPropertyWrapper;
+                return _EventLinkPropertyWrapper;
             }
             set
             {
-                _positionPropertyWrapper = value;
+                _EventLinkPropertyWrapper = value;
                 EventLink = value.Key;
             }
         }
@@ -47,22 +47,22 @@ namespace AptaEvents.Module.BusinessObjects
         [System.ComponentModel.DisplayName("Fields")]
         public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
 
-        private BindingList<PositionPropertyWrapper> _positionDataSource;
+        private BindingList<EventLinkPropertyWrapper> _eventLinkDataSource;
         [Browsable(false)]
         [NotMapped]
-        public BindingList<PositionPropertyWrapper> PositionDataSource
+        public BindingList<EventLinkPropertyWrapper> EventLinkDataSource
         {
             get
             {
-                if (_positionDataSource == null)
+                if (_eventLinkDataSource == null)
                 {
-                    _positionDataSource = new BindingList<PositionPropertyWrapper>();
+                    _eventLinkDataSource = new BindingList<EventLinkPropertyWrapper>();
                     for (int i = 0; i < 5; i++)
                     {
-                        _positionDataSource.Add(new PositionPropertyWrapper("Position" + i.ToString(), i.ToString()));
+                        _eventLinkDataSource.Add(new EventLinkPropertyWrapper("Position" + i.ToString(), i.ToString()));
                     }
                 }
-                return _positionDataSource;
+                return _eventLinkDataSource;
             }
         }
     }
@@ -73,20 +73,20 @@ namespace AptaEvents.Module.BusinessObjects
         public string eventName { get; set; } = string.Empty;
     }
 
-    [DomainComponent, XafDefaultProperty(nameof(PositionName))]
-    public class PositionPropertyWrapper
+    [DomainComponent, XafDefaultProperty(nameof(EventLinkName))]
+    public class EventLinkPropertyWrapper
     {
         private string _key;
-        private string _positionName;
+        private string _eventLinkName;
 
-        public PositionPropertyWrapper(string positionName, string key)
+        public EventLinkPropertyWrapper(string eventLinkName, string key)
         {
             this._key = key;
-            this._positionName = positionName;
+            this._eventLinkName = eventLinkName;
         }
         
         [DevExpress.ExpressApp.Data.Key]
         public string Key { get { return _key; }}
-        public string PositionName { get { return _positionName; } }
+        public string EventLinkName { get { return _eventLinkName; } }
     }
 }
