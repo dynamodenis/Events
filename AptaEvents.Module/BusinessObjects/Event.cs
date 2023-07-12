@@ -1,4 +1,5 @@
 ﻿using AptaEvents.Module.DTO;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -8,23 +9,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AptaEvents.Module.BusinessObjects
 {
-    [NavigationItem("Events")]
-    public class Event : BaseObject
-    {
-        public virtual string Name { get; set; }
+	[NavigationItem("Events")]
+	public class Event : BaseObject
+	{
+		public virtual string Name { get; set; }
 
-        [Column(TypeName = "date")]
-        public virtual DateTime Date { get; set; }
+		[Column(TypeName = "date")]
+		public virtual DateTime Date { get; set; }
 
-        public virtual bool Live { get; set; }
+		public virtual bool Live { get; set; }
 
-        public virtual string EventLink { get; set; }
+		public virtual string EventLink { get; set; }
 
-        [DisplayName("Fields")]
-        public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
+		[DisplayName("Fields")]
+		public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
 
-        [Column(TypeName = "jsonb")]
-        public virtual PublishData PublishData {get; set;} 
+		[Appearance("Event.PublishData.Hide", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+		[Column(TypeName = "jsonb")]
+		public virtual PublishData PublishData { get; set; }
 
-    }
+	}
 }
