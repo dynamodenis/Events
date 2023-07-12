@@ -1,8 +1,13 @@
-﻿using DevExpress.ExpressApp.DC;
+﻿using AptaEvents.Common.Helpers;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF;
 using DevExpress.Xpo;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,6 +18,11 @@ namespace AptaEvents.Module.BusinessObjects
     [NavigationItem("Events")]
     public class Event : BaseObject
     {
+        private AptaEventsApi _eventsApi;
+
+        private EventLinkPropertyWrapper _EventLinkPropertyWrapper;
+        private BindingList<EventLinkPropertyWrapper> _eventLinkDataSource;
+
         public virtual string Name { get; set; }
 
         [Column(TypeName = "date")]
@@ -23,10 +33,23 @@ namespace AptaEvents.Module.BusinessObjects
         [Browsable(false)]
         public virtual string EventLink { get; set; }
 
-        private EventLinkPropertyWrapper _EventLinkPropertyWrapper;
+        [System.ComponentModel.DisplayName("Fields")]
+        public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
+
+        public override void OnCreated()
+        {
+            base.OnCreated();
+
+            var configuration = ObjectSpace.ServiceProvider.GetRequiredService<IConfiguration>();
+
+            _eventsApi = new AptaEventsApi(configuration);
+        }
+
         [XafDisplayName("EventLink")]
         [DataSourceProperty(nameof(EventLinkDataSource))]
         [NotMapped]
+        // need to hide from list view otherwise it will call api per item
+        [VisibleInListView(false)]
         public EventLinkPropertyWrapper EventLinkWrapper
         {
             get
@@ -44,10 +67,6 @@ namespace AptaEvents.Module.BusinessObjects
             }
         }
 
-        [System.ComponentModel.DisplayName("Fields")]
-        public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
-
-        private BindingList<EventLinkPropertyWrapper> _eventLinkDataSource;
         [Browsable(false)]
         [NotMapped]
         public BindingList<EventLinkPropertyWrapper> EventLinkDataSource
@@ -57,17 +76,32 @@ namespace AptaEvents.Module.BusinessObjects
                 if (_eventLinkDataSource == null)
                 {
                     _eventLinkDataSource = new BindingList<EventLinkPropertyWrapper>();
-                    for (int i = 0; i < 5; i++)
+
+                    // temporary assign past date
+                    var date = "2023-01-01";
+                    
+                    try
                     {
-                        _eventLinkDataSource.Add(new EventLinkPropertyWrapper("Position" + i.ToString(), i.ToString()));
+                        var eventResponse = _eventsApi.GetRequest("Events/GetEventList", $"date={date}").Result;
+                        var events = JsonConvert.DeserializeObject<List<ApiEventListing>>(eventResponse);
+
+                        foreach (var e in events)
+                        {
+                            _eventLinkDataSource.Add(new EventLinkPropertyWrapper(e.eventName, e.eventID.ToString()));
+                        }
                     }
+                    catch (Exception e)
+                    {
+                        Tracing.Tracer.LogError(e);
+                    }
+
                 }
                 return _eventLinkDataSource;
             }
         }
     }
 
-    public class ApiEventList
+    public class ApiEventListing
     {
         public int eventID { get; set; } = 0;
         public string eventName { get; set; } = string.Empty;

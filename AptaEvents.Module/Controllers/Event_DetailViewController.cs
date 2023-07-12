@@ -1,5 +1,4 @@
 ﻿using AptaEvents.Module.BusinessObjects;
-using AptaEvents.Module.Services;
 using Castle.Core.Resource;
 using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;

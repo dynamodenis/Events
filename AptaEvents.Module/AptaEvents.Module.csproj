@@ -42,6 +42,12 @@
     <PackageReference Include="Npgsql" Version="7.0.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AptaEvents.Common\AptaEvents.Common.csproj" />
+  </ItemGroup>
   <!-- <ItemGroup>
     <Reference Include="System.Web" />
     <Reference Include="DevExpress.ExpressApp.Blazor.v23.1">
