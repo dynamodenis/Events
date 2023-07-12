@@ -27,7 +27,7 @@ namespace AptaEvents.Module.BusinessObjects
         [XafDisplayName("EventLink")]
         [DataSourceProperty(nameof(PositionDataSource))]
         [NotMapped]
-        public virtual PositionPropertyWrapper PositionWrapper
+        public PositionPropertyWrapper PositionWrapper
         {
             get
             {
@@ -39,11 +39,8 @@ namespace AptaEvents.Module.BusinessObjects
             }
             set
             {
-                //SetPropertyValue(nameof(PositionWrapper), ref _positionPropertyWrapper, value);
-                //if (!IsLoading && !IsSaving)
-                //{
-                    EventLink = value.Key;
-                //}
+                _positionPropertyWrapper = value;
+                EventLink = value.Key;
             }
         }
 
@@ -53,7 +50,7 @@ namespace AptaEvents.Module.BusinessObjects
         private BindingList<PositionPropertyWrapper> _positionDataSource;
         [Browsable(false)]
         [NotMapped]
-        public virtual BindingList<PositionPropertyWrapper> PositionDataSource
+        public BindingList<PositionPropertyWrapper> PositionDataSource
         {
             get
             {
@@ -81,11 +78,6 @@ namespace AptaEvents.Module.BusinessObjects
     {
         private int _key;
         private string _positionName;
-
-        public PositionPropertyWrapper()
-        {       
-        }
-
 
         public PositionPropertyWrapper(string positionName, int key)
         {
