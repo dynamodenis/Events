@@ -71,6 +71,5 @@ public class AptaEventsEFCoreDbContext : DbContext
             .HasMany(t => t.Aspects)
             .WithOne(t => t.Owner)
             .OnDelete(DeleteBehavior.Cascade);
-        modelBuilder.Entity<PositionPropertyWrapper>().HasNoKey();
     }
 }
