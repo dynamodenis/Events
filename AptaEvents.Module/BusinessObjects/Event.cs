@@ -19,6 +19,7 @@ namespace AptaEvents.Module.BusinessObjects
     public class Event : BaseObject
     {
         private AptaEventsApi _eventsApi;
+        private IConfiguration _configuration;
 
         private EventLinkPropertyWrapper _EventLinkPropertyWrapper;
         private BindingList<EventLinkPropertyWrapper> _eventLinkDataSource;
@@ -40,9 +41,24 @@ namespace AptaEvents.Module.BusinessObjects
         {
             base.OnCreated();
 
-            var configuration = ObjectSpace.ServiceProvider.GetRequiredService<IConfiguration>();
+            if (_eventsApi == null)
+            {
+                _configuration = ObjectSpace.ServiceProvider.GetRequiredService<IConfiguration>();
 
-            _eventsApi = new AptaEventsApi(configuration);
+                _eventsApi = new AptaEventsApi(_configuration);
+            }
+        }
+
+        public override void OnLoaded()
+        {
+            base.OnCreated();
+
+            if (_eventsApi == null)
+            {
+                _configuration = ObjectSpace.ServiceProvider.GetRequiredService<IConfiguration>();
+
+                _eventsApi = new AptaEventsApi(_configuration);
+            }
         }
 
         [XafDisplayName("EventLink")]
@@ -78,11 +94,12 @@ namespace AptaEvents.Module.BusinessObjects
                     _eventLinkDataSource = new BindingList<EventLinkPropertyWrapper>();
 
                     // temporary assign past date
-                    var date = "2023-01-01";
+                    var date = _configuration.GetRequiredSection("AptaEventsIntegrationApi")?["StateDate"];
+                    var dateParam = string.IsNullOrEmpty(date) ? null : date;
                     
                     try
                     {
-                        var eventResponse = _eventsApi.GetRequest("Events/GetEventList", $"date={date}").Result;
+                        var eventResponse = _eventsApi.GetRequest("Events/GetEventList", $"date={dateParam}");
                         var events = JsonConvert.DeserializeObject<List<ApiEventListing>>(eventResponse);
 
                         foreach (var e in events)

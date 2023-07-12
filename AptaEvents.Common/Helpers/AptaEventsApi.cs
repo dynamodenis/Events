@@ -15,9 +15,9 @@ namespace AptaEvents.Common.Helpers
             _configuration = configuration;
         }
 
-        public async Task<string> GetRequest(string action, string queryString = "", string accessToken = "")
+        public string GetRequest(string action, string queryString = "", string accessToken = "")
         {
-            return await GetApi(accessToken).GetRequest(action, queryString);
+            return GetApi(accessToken).GetRequest(action, queryString);
         }
 
         private InternalAPI GetApi(string accessToken = "")
@@ -85,7 +85,7 @@ namespace AptaEvents.Common.Helpers
             AccessToken = accessToken;
         }
 
-        internal async Task<string> GetRequest(string action, string queryString = "")
+        internal string GetRequest(string action, string queryString = "")
         {
             var authQuery = GetAuthQuery();
 
@@ -97,13 +97,11 @@ namespace AptaEvents.Common.Helpers
             {
                 var message = new HttpRequestMessage(HttpMethod.Get, targetUrl);
 
-                message.Headers.Add("Content-Type", "application/json");
-
                 SetAuthorization(message);
 
-                var response = await client.SendAsync(message);
+                var response = client.Send(message);
 
-                return await response.Content.ReadAsStringAsync();
+                return response.Content.ReadAsStringAsync().Result;
             }
             catch (WebException ex)
             {
