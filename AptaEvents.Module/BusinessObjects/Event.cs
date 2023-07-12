@@ -21,7 +21,7 @@ namespace AptaEvents.Module.BusinessObjects
         public virtual bool Live { get; set; }
 
         [Browsable(false)]
-        public virtual int EventLink { get; set; }
+        public virtual string EventLink { get; set; }
 
         private PositionPropertyWrapper _positionPropertyWrapper;
         [XafDisplayName("EventLink")]
@@ -59,7 +59,7 @@ namespace AptaEvents.Module.BusinessObjects
                     _positionDataSource = new BindingList<PositionPropertyWrapper>();
                     for (int i = 0; i < 5; i++)
                     {
-                        _positionDataSource.Add(new PositionPropertyWrapper("Position" + i.ToString(), i));
+                        _positionDataSource.Add(new PositionPropertyWrapper("Position" + i.ToString(), i.ToString()));
                     }
                 }
                 return _positionDataSource;
@@ -76,17 +76,17 @@ namespace AptaEvents.Module.BusinessObjects
     [DomainComponent, XafDefaultProperty(nameof(PositionName))]
     public class PositionPropertyWrapper
     {
-        private int _key;
+        private string _key;
         private string _positionName;
 
-        public PositionPropertyWrapper(string positionName, int key)
+        public PositionPropertyWrapper(string positionName, string key)
         {
             this._key = key;
             this._positionName = positionName;
         }
         
         [DevExpress.ExpressApp.Data.Key]
-        public int Key { get { return _key; }}
+        public string Key { get { return _key; }}
         public string PositionName { get { return _positionName; } }
     }
 }
