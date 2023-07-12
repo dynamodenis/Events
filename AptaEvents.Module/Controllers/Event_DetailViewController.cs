@@ -47,7 +47,7 @@ namespace AptaEvents.Module.Controllers
 
             var eventObject = (Event)View.CurrentObject;
             Debug.WriteLine("New item " + eventObject.Name);
-            await EventsServices.GetEvents(eventObject.Date, eventObject.Name  = "Fake Big Event");
+            //await EventsServices.GetEvents(eventObject.Date, eventObject.Name  = "Fake Big Event");
         }
         protected override void OnDeactivated()
         {
