@@ -40,7 +40,7 @@ namespace AptaEvents.Blazor.Server.Components
                 eventField.Field = editedField.Field;
                 eventField.Value = editedField.Value;
                 eventField.Event = _event;
-
+                eventField.TabID = editedField.TabID;
                 ComponentModel.Value.Add(eventField);
             }
 

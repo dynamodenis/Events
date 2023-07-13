@@ -20,5 +20,9 @@ namespace AptaEvents.Module.BusinessObjects
 
         [JsonIgnore]
         public virtual Event Event { get; set; }
+
+        public virtual Tab Tab { get; set; }
+
+        public virtual Guid TabID { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using DevExpress.Persistent.Base;
+﻿using AptaEvents.Module.DTO;
+using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.ObjectModel;
@@ -21,5 +23,9 @@ namespace AptaEvents.Module.BusinessObjects
 
         [DisplayName("Fields")]
         public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
+
+        [Column(TypeName = "jsonb")]
+        [Appearance("Event.PublishData.Hide", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public virtual string PublishData {get; set;} 
     }
 }

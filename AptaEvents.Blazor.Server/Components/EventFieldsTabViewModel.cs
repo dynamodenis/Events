@@ -70,5 +70,7 @@ namespace AptaEvents.Blazor.Server.Components
     {
         public string Field { get; set; }
         public string Value { get; set; }
+
+        public Guid TabID { get; set; }
     }
 }

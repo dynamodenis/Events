@@ -1,6 +1,8 @@
 ﻿@using AptaEvents.Module.BusinessObjects;
 @using DevExpress.ExpressApp;
-@if (Data is not null) 
+
+
+@if (Data is not null)
 {
     <DxTabs>
         @foreach (var tab in Tabs)
@@ -59,6 +61,11 @@
 
     Dictionary<string, IGrid> Grids { get; set; } = new Dictionary<string, IGrid>();
 
+    [Inject]
+    public AptaEventsEFCoreDbContext DbContext { get; set; }
+
+
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -82,11 +89,14 @@
 
         currentEventField.Value = editModel.Value;
 
+
+
         var eventField = new SimpleEventFieldViewModel
-        {
-            Field = editModel.Name,
-            Value = editModel.Value
-        };
+            {
+                Field = editModel.Name,
+                Value = editModel.Value,
+                TabID = DbContext.Tabs.SingleOrDefault(item => item.Name == editModel.Tab).ID
+            };
 
         await ItemClick.InvokeAsync(eventField);
     }
