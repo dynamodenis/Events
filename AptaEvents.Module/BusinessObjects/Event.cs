@@ -24,6 +24,16 @@ namespace AptaEvents.Module.BusinessObjects
         private EventLinkPropertyWrapper _EventLinkPropertyWrapper;
         private BindingList<EventLinkPropertyWrapper> _eventLinkDataSource;
 
+        [VisibleInListView(false)]
+        [VisibleInDetailView(false)]
+        [VisibleInLookupListView(false)]
+        public virtual int? TournamentId { get; set; }
+
+        [VisibleInListView(false)]
+        [VisibleInDetailView(false)]
+        [VisibleInLookupListView(false)]
+        public virtual int? SeasonId { get; set; }
+
         public virtual string Name { get; set; }
 
         [Column(TypeName = "date")]
