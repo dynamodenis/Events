@@ -59,6 +59,8 @@ namespace AptaEvents.Blazor.Server.Components
         public FieldType Type { get; set; }
         public string Value { get; set; }
 
+        public DateTime? Expiry { get; set; }
+
         public string Tab { get; set; }
 
         public DateTime? DateValue { get => DateTime.TryParse(Value, out var d) ? d : DateTime.Now; set => Value = value.ToString(); }
@@ -70,5 +72,6 @@ namespace AptaEvents.Blazor.Server.Components
     {
         public string Field { get; set; }
         public string Value { get; set; }
+        public DateTime? Expiry { get; set; }
     }
 }

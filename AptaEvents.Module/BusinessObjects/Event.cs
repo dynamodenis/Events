@@ -1,6 +1,8 @@
 ﻿using AptaEvents.Common.Helpers;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
+using AptaEvents.Module.DTO;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl.EF;
 using DevExpress.Xpo;
@@ -36,13 +38,17 @@ namespace AptaEvents.Module.BusinessObjects
 
         public virtual string Name { get; set; }
 
-        [Column(TypeName = "date")]
-        public virtual DateTime Date { get; set; }
+		[Column(TypeName = "date")]
+		public virtual DateTime Date { get; set; }
 
-        public virtual bool Live { get; set; }
+		public virtual bool Live { get; set; }
 
         [Browsable(false)]
         public virtual string EventLink { get; set; }
+
+        [Appearance("Event.PublishData.Hide", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        [Column(TypeName = "jsonb")]
+        public virtual PublishData PublishData { get; set; }
 
         [System.ComponentModel.DisplayName("Fields")]
         public virtual IList<EventField> EventFields { get; set; } = new ObservableCollection<EventField>();
