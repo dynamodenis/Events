@@ -13,6 +13,8 @@ namespace AptaEvents.Module.BusinessObjects
     {
         public virtual string Name { get; set; }
 
+        public virtual string DisplayName { get; set; }
+
         // fixed definition of allowed field types
         public virtual FieldType Type { get; set; }
 
@@ -28,7 +30,6 @@ namespace AptaEvents.Module.BusinessObjects
         String, 
         Number, 
         Date, 
-        Memo,
-        Boolean 
+        Memo
     }
 }

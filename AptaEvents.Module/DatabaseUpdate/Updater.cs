@@ -94,7 +94,7 @@ public class Updater : ModuleUpdater {
             EventScoringFlag = ObjectSpace.CreateObject<Field>();
             EventScoringFlag.Name = "Event Scoring Flag";
             EventScoringFlag.Tab = hiddenTab;
-            EventScoringFlag.Type = FieldType.Boolean;
+            EventScoringFlag.Type = FieldType.String;
         }
 
         var TournamentScoringFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Tournament Scoring Flag");
@@ -103,7 +103,7 @@ public class Updater : ModuleUpdater {
             TournamentScoringFlag = ObjectSpace.CreateObject<Field>();
             TournamentScoringFlag.Name = "Tournament Scoring Flag";
             TournamentScoringFlag.Tab = hiddenTab;
-            TournamentScoringFlag.Type = FieldType.Boolean;
+            TournamentScoringFlag.Type = FieldType.String;
         }
 
         var ShowWaitingListFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Show Waiting List Flag");
@@ -112,7 +112,7 @@ public class Updater : ModuleUpdater {
             ShowWaitingListFlag = ObjectSpace.CreateObject<Field>();
             ShowWaitingListFlag.Name = "Show Waiting List Flag";
             ShowWaitingListFlag.Tab = hiddenTab;
-            ShowWaitingListFlag.Type = FieldType.Boolean;
+            ShowWaitingListFlag.Type = FieldType.String;
         }
 
         var SeasonName = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Season Name");
@@ -169,7 +169,7 @@ public class Updater : ModuleUpdater {
             CancelledFlag = ObjectSpace.CreateObject<Field>();
             CancelledFlag.Name = "Cancelled Flag";
             CancelledFlag.Tab = hiddenTab;
-            CancelledFlag.Type = FieldType.Boolean;
+            CancelledFlag.Type = FieldType.String;
         }
         var EntryOpenFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Entry Open Flag");
         if (EntryOpenFlag == null)
@@ -177,7 +177,7 @@ public class Updater : ModuleUpdater {
             EntryOpenFlag = ObjectSpace.CreateObject<Field>();
             EntryOpenFlag.Name = "Entry Open Flag";
             EntryOpenFlag.Tab = hiddenTab;
-            EntryOpenFlag.Type = FieldType.Boolean;
+            EntryOpenFlag.Type = FieldType.String;
         }
         var NRTFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "NRT Flag");
         if (NRTFlag == null)
@@ -185,7 +185,7 @@ public class Updater : ModuleUpdater {
             NRTFlag = ObjectSpace.CreateObject<Field>();
             NRTFlag.Name = "NRT Flag";
             NRTFlag.Tab = hiddenTab;
-            NRTFlag.Type = FieldType.Boolean;
+            NRTFlag.Type = FieldType.String;
         }
         var AptaTourFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Tour Flag");
         if (AptaTourFlag == null)
@@ -193,7 +193,7 @@ public class Updater : ModuleUpdater {
             AptaTourFlag = ObjectSpace.CreateObject<Field>();
             AptaTourFlag.Name = "Tour Flag";
             AptaTourFlag.Tab = hiddenTab;
-            AptaTourFlag.Type = FieldType.Boolean;
+            AptaTourFlag.Type = FieldType.String;
         }
         var GrandPrixFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Grand Prix Flag");
         if (GrandPrixFlag == null)
@@ -201,7 +201,7 @@ public class Updater : ModuleUpdater {
             GrandPrixFlag = ObjectSpace.CreateObject<Field>();
             GrandPrixFlag.Name = "Grand Prix Flag";
             GrandPrixFlag.Tab = hiddenTab;
-            GrandPrixFlag.Type = FieldType.Boolean;
+            GrandPrixFlag.Type = FieldType.String;
         }
         var NationalChampionshipFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "National Championship Flag");
         if (NationalChampionshipFlag == null)
@@ -209,7 +209,7 @@ public class Updater : ModuleUpdater {
             NationalChampionshipFlag = ObjectSpace.CreateObject<Field>();
             NationalChampionshipFlag.Name = "National Championship Flag";
             NationalChampionshipFlag.Tab = hiddenTab;
-            NationalChampionshipFlag.Type = FieldType.Boolean;
+            NationalChampionshipFlag.Type = FieldType.String;
         }
         var PTIFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "PTI Flag");
         if (PTIFlag == null)
@@ -217,7 +217,7 @@ public class Updater : ModuleUpdater {
             PTIFlag = ObjectSpace.CreateObject<Field>();
             PTIFlag.Name = "PTI Flag";
             PTIFlag.Tab = hiddenTab;
-            PTIFlag.Type = FieldType.Boolean;
+            PTIFlag.Type = FieldType.String;
         }
         var JuniorFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Junior Flag");
         if (JuniorFlag == null)
@@ -225,7 +225,7 @@ public class Updater : ModuleUpdater {
             JuniorFlag = ObjectSpace.CreateObject<Field>();
             JuniorFlag.Name = "Junior Flag";
             JuniorFlag.Tab = hiddenTab;
-            JuniorFlag.Type = FieldType.Boolean;
+            JuniorFlag.Type = FieldType.String;
         }
         var MastersFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Masters Flag");
         if (MastersFlag == null)
@@ -233,7 +233,7 @@ public class Updater : ModuleUpdater {
             MastersFlag = ObjectSpace.CreateObject<Field>();
             MastersFlag.Name = "Masters Flag";
             MastersFlag.Tab = hiddenTab;
-            MastersFlag.Type = FieldType.Boolean;
+            MastersFlag.Type = FieldType.String;
         }
         var EntryOpenDate = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Entry Open Date");
         if (EntryOpenDate == null)
