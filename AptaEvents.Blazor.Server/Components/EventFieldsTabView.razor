@@ -34,6 +34,10 @@
 									{
 										<DxSpinEdit @bind-Value="@field.NumberValue"></DxSpinEdit>
 									}
+									else if (field.Type == FieldType.Boolean)
+									{
+										<DxCheckBox @bind-Checked="@field.BooleanValue"></DxCheckBox>
+									}
 									else
 									{
 										<DxTextBox @bind-Text="@field.StringValue"></DxTextBox>

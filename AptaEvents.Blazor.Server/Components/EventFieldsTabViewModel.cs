@@ -64,6 +64,7 @@ namespace AptaEvents.Blazor.Server.Components
         public string Tab { get; set; }
 
         public DateTime? DateValue { get => DateTime.TryParse(Value, out var d) ? d : DateTime.Now; set => Value = value.ToString(); }
+        public bool BooleanValue { get => bool.TryParse(Value , out var i) ? i : false; set => Value = value.ToString(); }
         public int NumberValue { get => int.TryParse(Value , out var i) ? i : 0; set => Value = value.ToString(); }
         public string StringValue { get => Value; set => Value = value; }
     }

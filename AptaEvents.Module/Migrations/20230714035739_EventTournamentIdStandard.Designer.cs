@@ -4,6 +4,7 @@ using AptaEvents.Module.BusinessObjects;
 using AptaEvents.Module.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AptaEvents.Module.Migrations
 {
     [DbContext(typeof(AptaEventsEFCoreDbContext))]
-    partial class AptaEventsEFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230714035739_EventTournamentIdStandard")]
+    partial class EventTournamentIdStandard
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

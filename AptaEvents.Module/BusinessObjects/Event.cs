@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.AccessControl;
 
 
 namespace AptaEvents.Module.BusinessObjects
@@ -29,7 +30,7 @@ namespace AptaEvents.Module.BusinessObjects
         [VisibleInListView(false)]
         [VisibleInDetailView(false)]
         [VisibleInLookupListView(false)]
-        public virtual int? TournamentId { get; set; }
+        public virtual int? EventId { get; set; }
 
         [VisibleInListView(false)]
         [VisibleInDetailView(false)]
@@ -86,7 +87,7 @@ namespace AptaEvents.Module.BusinessObjects
         {
             get
             {
-                if (_EventLinkPropertyWrapper == null || _EventLinkPropertyWrapper.Key != EventLink)
+                if (ObjectSpace != null && (_EventLinkPropertyWrapper == null || _EventLinkPropertyWrapper.Key != EventLink))
                 {
                     _EventLinkPropertyWrapper = EventLinkDataSource.FirstOrDefault(i => i.Key == EventLink);
                 }
@@ -95,7 +96,9 @@ namespace AptaEvents.Module.BusinessObjects
             set
             {
                 _EventLinkPropertyWrapper = value;
-                EventLink = value.Key;
+                EventLink = value?.Key;
+
+                PopulateAptaBaseValues(value?.Key);
             }
         }
 
@@ -105,22 +108,23 @@ namespace AptaEvents.Module.BusinessObjects
         {
             get
             {
-                if (_eventLinkDataSource == null)
+                // check objectspace to make sure it doesn't load in the api
+                if (_eventLinkDataSource == null && ObjectSpace != null)
                 {
                     _eventLinkDataSource = new BindingList<EventLinkPropertyWrapper>();
 
                     // temporary assign past date
-                    var date = _configuration.GetRequiredSection("AptaEventsIntegrationApi")?["StateDate"];
+                    var date = _configuration.GetRequiredSection("AptaEventsIntegrationApi")?["StartDate"];
                     var dateParam = string.IsNullOrEmpty(date) ? null : date;
                     
                     try
                     {
-                        var eventResponse = _eventsApi.GetRequest("Events/GetEventList", $"date={dateParam}");
-                        var events = JsonConvert.DeserializeObject<List<ApiEventListing>>(eventResponse);
+                        var eventResponse = _eventsApi.GetRequest("Tournaments/GetTournamentList", $"date={dateParam}");
+                        var events = JsonConvert.DeserializeObject<List<TournamentListingDto>>(eventResponse);
 
                         foreach (var e in events)
                         {
-                            _eventLinkDataSource.Add(new EventLinkPropertyWrapper(e.eventName, e.eventID.ToString()));
+                            _eventLinkDataSource.Add(new EventLinkPropertyWrapper(e.TournamentName, e.TournamentID.ToString()));
                         }
                     }
                     catch (Exception e)
@@ -132,13 +136,67 @@ namespace AptaEvents.Module.BusinessObjects
                 return _eventLinkDataSource;
             }
         }
-    }
 
-    public class ApiEventListing
-    {
-        public int eventID { get; set; } = 0;
-        public string eventName { get; set; } = string.Empty;
-    }
+
+        private void PopulateAptaBaseValues(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+                return;
+
+            try
+            {
+                var eventResponse = _eventsApi.GetRequest($"Tournaments/GetTournamentData/{key}");
+                var eventData = JsonConvert.DeserializeObject<TournamentDataDto>(eventResponse);
+
+                this.EventId = eventData.EventId;
+                this.SeasonId = eventData.SeasonId;
+
+                SetEventField("AptaTourFlag", eventData.AptaTourFlag.ToString());
+                SetEventField("CancelledFlag", eventData.CancelledFlag.ToString());
+                SetEventField("Capacity", eventData.Capacity.ToString());
+                SetEventField("EndDate", eventData.EndDate.ToString());
+                SetEventField("EntryCloseDate", eventData.EntryCloseDate.ToString());
+                SetEventField("EntryOpenDate", eventData.EntryOpenDate.ToString());
+                SetEventField("EntryOpenFlag", eventData.EntryOpenFlag.ToString());
+                SetEventField("EventScoringFlag", eventData.EventScoringFlag.ToString());
+                SetEventField("GrandPrixFlag", eventData.GrandPrixFlag.ToString());
+                SetEventField("JuniorFlag", eventData.JuniorFlag.ToString());
+                SetEventField("MastersFlag", eventData.MastersFlag.ToString());
+                SetEventField("NationalChampionshipFlag", eventData.NationalChampionshipFlag.ToString());
+                SetEventField("NRTFlag", eventData.NRTFlag.ToString());
+                SetEventField("PTIFlag", eventData.PTIFlag.ToString());
+                SetEventField("Region", eventData.Region.ToString());
+                SetEventField("SeasonName", eventData.SeasonName.ToString());
+                SetEventField("ShowWaitingListFlag", eventData.ShowWaitingListFlag.ToString());
+                SetEventField("StartDate", eventData.StartDate.ToString());
+                SetEventField("TournamentScoringFlag", eventData.TournamentScoringFlag.ToString());
+                SetEventField("TournamentType", eventData.TournamentType.ToString());
+			}
+            catch (Exception e)
+            {
+                Tracing.Tracer.LogError(e);
+            }
+        }
+
+		private void SetEventField(string field, string value)
+		{
+			var eventField = EventFields.FirstOrDefault(f => f.Field == field);
+
+            if (eventField != null)
+            {
+                eventField.Value = value;
+            }
+			else
+			{
+				eventField = ObjectSpace.CreateObject<EventField>();
+
+				eventField.Field = field;
+				eventField.Value = value;
+
+                EventFields.Add(eventField);
+			}
+		}
+	}
 
     [DomainComponent, XafDefaultProperty(nameof(EventLinkName))]
     public class EventLinkPropertyWrapper

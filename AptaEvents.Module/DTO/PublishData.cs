@@ -24,6 +24,7 @@ namespace AptaEvents.Module.DTO
     public class FieldDto
     {
         public string Name { get; set; }
+        public string DisplayName { get; set; }
         public DateTime? Expiry { get; set; }
         public int SortOrder { get; set; }
 

@@ -74,6 +74,7 @@ namespace AptaEvents.Module.Controllers
                     var eventViewModel = new FieldDto
                     {
                         Name = field.Name,
+                        DisplayName = string.IsNullOrEmpty(field.DisplayName) ? field.Name : field.DisplayName,
                         SortOrder = field.SortOrder,
                         Type = field.Type.ToString(),
                         Expiry = eventField.Expiry,

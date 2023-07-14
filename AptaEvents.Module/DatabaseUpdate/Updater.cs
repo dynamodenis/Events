@@ -89,43 +89,48 @@ namespace AptaEvents.Module.DatabaseUpdate
         {
             tournamentNameField = ObjectSpace.CreateObject<Field>();
             tournamentNameField.Name = "Tournament Name";
-            tournamentNameField.Tab = hiddenTab;
+            tournamentNameField.DisplayName = "Tournament Name";
+				tournamentNameField.Tab = hiddenTab;
             tournamentNameField.Type = FieldType.String;
         }
 
-        var EventScoringFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Event Scoring Flag");
+        var EventScoringFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "EventScoringFlag");
         if (EventScoringFlag == null)
         {
             EventScoringFlag = ObjectSpace.CreateObject<Field>();
-            EventScoringFlag.Name = "Event Scoring Flag";
-            EventScoringFlag.Tab = hiddenTab;
-            EventScoringFlag.Type = FieldType.String;
+            EventScoringFlag.Name = "EventScoringFlag";
+            EventScoringFlag.DisplayName = "Event Scoring Flag";
+				EventScoringFlag.Tab = hiddenTab;
+            EventScoringFlag.Type = FieldType.Boolean;
         }
 
-        var TournamentScoringFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Tournament Scoring Flag");
+        var TournamentScoringFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "TournamentScoringFlag");
         if (TournamentScoringFlag == null)
         {
             TournamentScoringFlag = ObjectSpace.CreateObject<Field>();
-            TournamentScoringFlag.Name = "Tournament Scoring Flag";
-            TournamentScoringFlag.Tab = hiddenTab;
-            TournamentScoringFlag.Type = FieldType.String;
+            TournamentScoringFlag.Name = "TournamentScoringFlag";
+            TournamentScoringFlag.DisplayName = "Tournament Scoring Flag";
+				TournamentScoringFlag.Tab = hiddenTab;
+            TournamentScoringFlag.Type = FieldType.Boolean;
         }
 
-        var ShowWaitingListFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Show Waiting List Flag");
+        var ShowWaitingListFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "ShowWaitingListFlag");
         if (ShowWaitingListFlag == null)
         {
             ShowWaitingListFlag = ObjectSpace.CreateObject<Field>();
-            ShowWaitingListFlag.Name = "Show Waiting List Flag";
-            ShowWaitingListFlag.Tab = hiddenTab;
-            ShowWaitingListFlag.Type = FieldType.String;
+            ShowWaitingListFlag.Name = "ShowWaitingListFlag";
+            ShowWaitingListFlag.DisplayName = "Show Waiting List Flag";
+				ShowWaitingListFlag.Tab = hiddenTab;
+            ShowWaitingListFlag.Type = FieldType.Boolean;
         }
 
-        var SeasonName = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Season Name");
+        var SeasonName = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "SeasonName");
         if (SeasonName == null)
         {
             SeasonName = ObjectSpace.CreateObject<Field>();
-            SeasonName.Name = "Season Name";
-            SeasonName.Tab = hiddenTab;
+            SeasonName.Name = "SeasonName";
+            SeasonName.DisplayName = "Season Name";
+				SeasonName.Tab = hiddenTab;
             SeasonName.Type = FieldType.String;
         }
 
@@ -137,30 +142,34 @@ namespace AptaEvents.Module.DatabaseUpdate
             Region.Tab = hiddenTab;
             Region.Type = FieldType.Number;
         }
-        var StartDate = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Start Date");
+        var StartDate = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "StartDate");
         if (StartDate == null)
         {
             StartDate = ObjectSpace.CreateObject<Field>();
-            StartDate.Name = "Start Date";
-            StartDate.Tab = hiddenTab;
-            StartDate.Type = FieldType.String;
+            StartDate.Name = "StartDate";
+            StartDate.DisplayName = "Start Date";
+				StartDate.Tab = hiddenTab;
+            StartDate.Type = FieldType.Date;
         }
-        var EndDate = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "End Date");
+        var EndDate = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "EndDate");
         if (EndDate == null)
         {
             EndDate = ObjectSpace.CreateObject<Field>();
-            EndDate.Name = "End Date";
+            EndDate.Name = "EndDate";
+            EndDate.DisplayName = "End Date";
             EndDate.Tab = hiddenTab;
-            EndDate.Type = FieldType.String;
+            EndDate.Type = FieldType.Date;
         }
-        var TournamentType = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Tournament Type");
+        var TournamentType = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "TournamentType");
         if (TournamentType == null)
         {
             TournamentType = ObjectSpace.CreateObject<Field>();
-            TournamentType.Name = "Tournament Type";
+            TournamentType.Name = "TournamentType";
+            TournamentType.DisplayName = "Tournament Type";
             TournamentType.Tab = hiddenTab;
-        }
-        var Capacity = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Capacity");
+			TournamentType.Type = FieldType.String;
+		}
+		var Capacity = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Capacity");
         if (Capacity == null)
         {
             Capacity = ObjectSpace.CreateObject<Field>();
@@ -168,93 +177,104 @@ namespace AptaEvents.Module.DatabaseUpdate
             Capacity.Tab = hiddenTab;
             Capacity.Type = FieldType.Number;
         }
-        var CancelledFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Cancelled Flag");
+        var CancelledFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "CancelledFlag");
         if (CancelledFlag == null)
         {
             CancelledFlag = ObjectSpace.CreateObject<Field>();
-            CancelledFlag.Name = "Cancelled Flag";
+            CancelledFlag.Name = "CancelledFlag";
+            CancelledFlag.DisplayName = "Cancelled";
             CancelledFlag.Tab = hiddenTab;
-            CancelledFlag.Type = FieldType.String;
+            CancelledFlag.Type = FieldType.Boolean;
         }
-        var EntryOpenFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Entry Open Flag");
+        var EntryOpenFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "EntryOpenFlag");
         if (EntryOpenFlag == null)
         {
             EntryOpenFlag = ObjectSpace.CreateObject<Field>();
-            EntryOpenFlag.Name = "Entry Open Flag";
+            EntryOpenFlag.Name = "EntryOpenFlag";
+            EntryOpenFlag.DisplayName = "Entry Open Flag";
             EntryOpenFlag.Tab = hiddenTab;
-            EntryOpenFlag.Type = FieldType.String;
+            EntryOpenFlag.Type = FieldType.Boolean;
         }
-        var NRTFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "NRT Flag");
+        var NRTFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "NRTFlag");
         if (NRTFlag == null)
         {
             NRTFlag = ObjectSpace.CreateObject<Field>();
-            NRTFlag.Name = "NRT Flag";
-            NRTFlag.Tab = hiddenTab;
-            NRTFlag.Type = FieldType.String;
+            NRTFlag.Name = "NRTFlag";
+            NRTFlag.DisplayName = "NRT Flag";
+				NRTFlag.Tab = hiddenTab;
+            NRTFlag.Type = FieldType.Boolean;
         }
-        var AptaTourFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Tour Flag");
+        var AptaTourFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "AptaTourFlag");
         if (AptaTourFlag == null)
         {
             AptaTourFlag = ObjectSpace.CreateObject<Field>();
-            AptaTourFlag.Name = "Tour Flag";
+            AptaTourFlag.Name = "AptaTourFlag";
+            AptaTourFlag.DisplayName = "Tour Flag";
             AptaTourFlag.Tab = hiddenTab;
-            AptaTourFlag.Type = FieldType.String;
+            AptaTourFlag.Type = FieldType.Boolean;
         }
-        var GrandPrixFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Grand Prix Flag");
+        var GrandPrixFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "GrandPrixFlag");
         if (GrandPrixFlag == null)
         {
             GrandPrixFlag = ObjectSpace.CreateObject<Field>();
-            GrandPrixFlag.Name = "Grand Prix Flag";
-            GrandPrixFlag.Tab = hiddenTab;
-            GrandPrixFlag.Type = FieldType.String;
+            GrandPrixFlag.Name = "GrandPrixFlag";
+            GrandPrixFlag.DisplayName = "Grand Prix Flag";
+				GrandPrixFlag.Tab = hiddenTab;
+            GrandPrixFlag.Type = FieldType.Boolean;
         }
-        var NationalChampionshipFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "National Championship Flag");
+        var NationalChampionshipFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "NationalChampionshipFlag");
         if (NationalChampionshipFlag == null)
         {
             NationalChampionshipFlag = ObjectSpace.CreateObject<Field>();
-            NationalChampionshipFlag.Name = "National Championship Flag";
-            NationalChampionshipFlag.Tab = hiddenTab;
-            NationalChampionshipFlag.Type = FieldType.String;
+            NationalChampionshipFlag.Name = "NationalChampionshipFlag";
+            NationalChampionshipFlag.DisplayName = "National Championship Flag";
+				NationalChampionshipFlag.Tab = hiddenTab;
+            NationalChampionshipFlag.Type = FieldType.Boolean;
         }
-        var PTIFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "PTI Flag");
+        var PTIFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "PTIFlag");
         if (PTIFlag == null)
         {
             PTIFlag = ObjectSpace.CreateObject<Field>();
-            PTIFlag.Name = "PTI Flag";
-            PTIFlag.Tab = hiddenTab;
-            PTIFlag.Type = FieldType.String;
+            PTIFlag.Name = "PTIFlag";
+            PTIFlag.DisplayName = "PTI Flag";
+				PTIFlag.Tab = hiddenTab;
+            PTIFlag.Type = FieldType.Boolean;
         }
-        var JuniorFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Junior Flag");
+        var JuniorFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "JuniorFlag");
         if (JuniorFlag == null)
         {
             JuniorFlag = ObjectSpace.CreateObject<Field>();
-            JuniorFlag.Name = "Junior Flag";
+            JuniorFlag.Name = "JuniorFlag";
+            JuniorFlag.DisplayName = "Junior Flag";
             JuniorFlag.Tab = hiddenTab;
-            JuniorFlag.Type = FieldType.String;
+            JuniorFlag.Type = FieldType.Boolean;
         }
-        var MastersFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Masters Flag");
+        var MastersFlag = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "MastersFlag");
         if (MastersFlag == null)
         {
             MastersFlag = ObjectSpace.CreateObject<Field>();
-            MastersFlag.Name = "Masters Flag";
+            MastersFlag.Name = "MastersFlag";
+            MastersFlag.DisplayName = "Masters Flag";
             MastersFlag.Tab = hiddenTab;
-            MastersFlag.Type = FieldType.String;
+            MastersFlag.Type = FieldType.Boolean;
         }
-        var EntryOpenDate = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Entry Open Date");
+        var EntryOpenDate = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "EntryOpenDate");
         if (EntryOpenDate == null)
         {
             EntryOpenDate = ObjectSpace.CreateObject<Field>();
-            EntryOpenDate.Name = "Entry Open Date";
+            EntryOpenDate.Name = "EntryOpenDate";
+            EntryOpenDate.DisplayName = "Entry Open Date";
             EntryOpenDate.Tab = hiddenTab;
             EntryOpenDate.Type = FieldType.String;
         }
-        var EntryCloseDate = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "Entry Close Date");
+        var EntryCloseDate = ObjectSpace.FirstOrDefault<Field>(f => f.Name == "EntryCloseDate");
         if (EntryCloseDate == null)
         {
             EntryCloseDate = ObjectSpace.CreateObject<Field>();
-            EntryCloseDate.Name = "Entry Close Date";
+            EntryCloseDate.Name = "EntryCloseDate";
+            EntryCloseDate.DisplayName = "Entry Close Date";
             EntryCloseDate.Tab = hiddenTab;
-            EntryCloseDate.Type = FieldType.String;
+            EntryCloseDate.Type = FieldType.Date;
         }
         ObjectSpace.CommitChanges();
     }
