@@ -4,6 +4,7 @@ using AptaEvents.Module.BusinessObjects;
 using AptaEvents.Module.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AptaEvents.Module.Migrations
 {
     [DbContext(typeof(AptaEventsEFCoreDbContext))]
-    partial class AptaEventsEFCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230710152950_EventPublishData")]
+    partial class EventPublishData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,12 +72,6 @@ namespace AptaEvents.Module.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<int?>("SeasonId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("TournamentId")
-                        .HasColumnType("integer");
-
                     b.Property<PublishData>("PublishData")
                         .HasColumnType("jsonb");
 
@@ -91,9 +88,6 @@ namespace AptaEvents.Module.Migrations
 
                     b.Property<Guid?>("EventID")
                         .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("Expiry")
-                        .HasColumnType("date");
 
                     b.Property<string>("Field")
                         .HasColumnType("text");
@@ -113,9 +107,6 @@ namespace AptaEvents.Module.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
-
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");

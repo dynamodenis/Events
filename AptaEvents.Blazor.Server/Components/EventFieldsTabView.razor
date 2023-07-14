@@ -1,94 +1,105 @@
 ﻿@using AptaEvents.Module.BusinessObjects;
 @using DevExpress.ExpressApp;
-@if (Data is not null) 
+
+
+@if (Data is not null)
 {
-    <DxTabs>
-        @foreach (var tab in Tabs)
-        {
-            <DxTabPage Text="@tab.Name">
-                <DxGrid @ref="Grids[tab.Name]"
-                        Data="tab.Fields"
-                        PageSize="30"
-                        KeyFieldName="Name"
-                        ValidationEnabled="false"
-                        CustomizeEditModel="Grid_CustomizeEditModel"
-                        EditModelSaving="Grid_EditModelSaving"
-                        EditMode="GridEditMode.EditRow"
-                        EditorRenderMode="GridEditorRenderMode.Integrated"
-                        KeyboardNavigationEnabled=true>
-                    <Columns>
-                        <DxGridCommandColumn Width="160px" NewButtonVisible="false" DeleteButtonVisible="false" />
-                        <DxGridDataColumn FieldName="Name" MinWidth="80" ReadOnly=true />
-                        <DxGridDataColumn FieldName="Value" MinWidth="120">
-                            <CellEditTemplate>
-                                @{
-                                    var field = (EventFieldViewModel)context.EditModel;
+	<DxTabs>
+		@foreach (var tab in Tabs)
+		{
+			<DxTabPage Text="@tab.Name">
+				<DxGrid @ref="Grids[tab.Name]"
+						Data="tab.Fields"
+						PageSize="30"
+						KeyFieldName="Name"
+						ValidationEnabled="false"
+						CustomizeEditModel="Grid_CustomizeEditModel"
+						EditModelSaving="Grid_EditModelSaving"
+						EditMode="GridEditMode.EditRow"
+						EditorRenderMode="GridEditorRenderMode.Integrated"
+						KeyboardNavigationEnabled=true>
+					<Columns>
+						<DxGridCommandColumn Width="160px" NewButtonVisible="false" DeleteButtonVisible="false" />
+						<DxGridDataColumn FieldName="Name" MinWidth="80" ReadOnly=true />
+						<DxGridDataColumn FieldName="Value" MinWidth="120">
+							<CellEditTemplate>
+								@{
+									var field = (EventFieldViewModel)context.EditModel;
 
-                                    if (field.Type == FieldType.Date)
-                                    {
-                                        <DxDateEdit @bind-Date="@field.DateValue"></DxDateEdit>
-                                    }
-                                    else if (field.Type == FieldType.Number)
-                                    {
-                                        <DxSpinEdit @bind-Value="@field.NumberValue"></DxSpinEdit>
-                                    }
-                                    else
-                                    {
-                                        <DxTextBox @bind-Text="@field.StringValue"></DxTextBox>
-                                    }
-                                }
-                            </CellEditTemplate>
+									if (field.Type == FieldType.Date)
+									{
+										<DxDateEdit @bind-Date="@field.DateValue"></DxDateEdit>
+									}
+									else if (field.Type == FieldType.Number)
+									{
+										<DxSpinEdit @bind-Value="@field.NumberValue"></DxSpinEdit>
+									}
+									else
+									{
+										<DxTextBox @bind-Text="@field.StringValue"></DxTextBox>
+									}
+								}
+							</CellEditTemplate>
 
-                        </DxGridDataColumn>
-                    </Columns>
-                </DxGrid>
-            </DxTabPage>
-        }
-    </DxTabs>
+						</DxGridDataColumn>
+						<DxGridDataColumn FieldName="Expiry" MinWidth="120">
+							<CellEditTemplate>
+								@{
+									var field = (EventFieldViewModel)context.EditModel;
+									<DxDateEdit @bind-Date="@field.Expiry"></DxDateEdit>
+								}
+							</CellEditTemplate>
+						</DxGridDataColumn>
+					</Columns>
+				</DxGrid>
+			</DxTabPage>
+		}
+	</DxTabs>
 }
 
 @code {
-    [Parameter]
-    public IList<EventField> Data { get; set; }
-    [Parameter]
-    public IEnumerable<TabWithEventFieldsViewModel> Tabs { get; set; }
-    [Parameter]
-    public EventCallback<SimpleEventFieldViewModel> ItemClick { get; set; }
-    [Parameter]
-    public CollectionSourceBase CollectionSource { get; set; }
+	[Parameter]
+	public IList<EventField> Data { get; set; }
+	[Parameter]
+	public IEnumerable<TabWithEventFieldsViewModel> Tabs { get; set; }
+	[Parameter]
+	public EventCallback<SimpleEventFieldViewModel> ItemClick { get; set; }
+	[Parameter]
+	public CollectionSourceBase CollectionSource { get; set; }
 
-    Dictionary<string, IGrid> Grids { get; set; } = new Dictionary<string, IGrid>();
+	Dictionary<string, IGrid> Grids { get; set; } = new Dictionary<string, IGrid>();
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            foreach (var Grid in Grids.Values)
-                await Grid.StartEditRowAsync(0);
-        }
-    }
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			foreach (var Grid in Grids.Values)
+				await Grid.StartEditRowAsync(0);
+		}
+	}
 
-    void Grid_CustomizeEditModel(GridCustomizeEditModelEventArgs e)
-    {
+	void Grid_CustomizeEditModel(GridCustomizeEditModelEventArgs e)
+	{
 
-    }
+	}
 
-    async Task Grid_EditModelSaving(GridEditModelSavingEventArgs e)
-    {
-        var editModel = e.EditModel as EventFieldViewModel;
+	async Task Grid_EditModelSaving(GridEditModelSavingEventArgs e)
+	{
+		var editModel = e.EditModel as EventFieldViewModel;
 
-        var tab = Tabs.FirstOrDefault(t => t.Name == editModel.Tab);
-        var currentEventField = tab.Fields.FirstOrDefault(f => f.Name == editModel.Name);
+		var tab = Tabs.FirstOrDefault(t => t.Name == editModel.Tab);
+		var currentEventField = tab.Fields.FirstOrDefault(f => f.Name == editModel.Name);
 
-        currentEventField.Value = editModel.Value;
+		currentEventField.Value = editModel.Value;
 
-        var eventField = new SimpleEventFieldViewModel
-        {
-            Field = editModel.Name,
-            Value = editModel.Value
-        };
+		var eventField = new SimpleEventFieldViewModel
+			{
+				Field = editModel.Name,
+				Value = editModel.Value,
+				Expiry = editModel.Expiry,
+			};
 
-        await ItemClick.InvokeAsync(eventField);
-    }
+		await ItemClick.InvokeAsync(eventField);
+	}
 
 }
