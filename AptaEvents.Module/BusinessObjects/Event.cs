@@ -116,10 +116,12 @@ namespace AptaEvents.Module.BusinessObjects
                     // temporary assign past date
                     var date = _configuration.GetRequiredSection("AptaEventsIntegrationApi")?["StartDate"];
                     var dateParam = string.IsNullOrEmpty(date) ? null : date;
+
+                    string eventResponse = null;
                     
                     try
                     {
-                        var eventResponse = _eventsApi.GetRequest("Tournaments/GetTournamentList", $"date={dateParam}");
+                        eventResponse = _eventsApi.GetRequest("Tournaments/GetTournamentList", $"date={dateParam}");
                         var events = JsonConvert.DeserializeObject<List<TournamentListingDto>>(eventResponse);
 
                         foreach (var e in events)
@@ -129,6 +131,7 @@ namespace AptaEvents.Module.BusinessObjects
                     }
                     catch (Exception e)
                     {
+                        Tracing.Tracer.LogText($"GetTournamentList: {eventResponse}");
                         Tracing.Tracer.LogError(e);
                     }
 
